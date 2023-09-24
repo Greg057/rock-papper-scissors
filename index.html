@@ -7,14 +7,33 @@
 </head>
 <body>
     <script>
-        const items = ["rock", "paper", "scissors"];
+        const items = ["rock", "papper", "scissors"];
 
         function getComputerChoice() {
             item = items[Math.floor(Math.random()*items.length)];
             return item;
         }
 
-        console.log(getComputerChoice());
+        function playRound(playerSelection, computerSelection) {
+            if (computerSelection === playerSelection) {
+                return "Tie!"
+            } 
+            else if ((playerSelection === "rock" && computerSelection === "scissors") 
+            || (playerSelection === "papper" && computerSelection === "rock") 
+            || (playerSelection === "scissors" && computerSelection === "papper")) {
+                return `You win! ${playerSelection} beats ${computerSelection}!`;
+            } 
+            else {
+                return `You Lose! ${computerSelection} beats ${playerSelection}!`;
+            }
+
+        }
+
+        function game () {
+            
+        }
+
+        console.log(playRound(prompt("Choose your item: ").toLowerCase(), getComputerChoice()));
     </script>
 </body>
 </html>
