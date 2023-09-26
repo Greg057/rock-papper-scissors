@@ -24,20 +24,40 @@ function playRound(playerSelection, computerSelection) {
 
 }
 
-function game() {
-    for (let i = 0; i < 5; i++) {
-        console.log(playRound(prompt("Choose your item: ").toLowerCase(), getComputerChoice()));
-    }
-    if (scoreComputer > scorePlayer) {
-        console.log(`You lost with a score of ${scorePlayer} to ${scoreComputer}.`);
-    }
-    else if (scoreComputer < scorePlayer) {
-        console.log(`You won with a score of ${scorePlayer} to ${scoreComputer}.`);
-    }
-    else {
-        console.log(`It is a tie! Both with a score of ${scorePlayer}.`);
-    }
+// function game() {
+//     for (let i = 0; i < 5; i++) {
+//         console.log(playRound(prompt("Choose your item: ").toLowerCase(), getComputerChoice()));
+//     }
+//     if (scoreComputer > scorePlayer) {
+//         console.log(`You lost with a score of ${scorePlayer} to ${scoreComputer}.`);
+//     }
+//     else if (scoreComputer < scorePlayer) {
+//         console.log(`You won with a score of ${scorePlayer} to ${scoreComputer}.`);
+//     }
+//     else {
+//         console.log(`It is a tie! Both with a score of ${scorePlayer}.`);
+//     }
     
+// }
+
+// game();
+
+const rock = document.getElementById("rock");
+const papper = document.getElementById("papper");
+const scissors = document.getElementById("scissors");
+buttons = [rock, papper, scissors];
+
+for (let i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener("click", function() {
+        console.log(playRound(buttons[i].getAttribute('id'), getComputerChoice()))
+    });
 }
 
-game();
+
+// rock.addEventListener("click", function() {
+//     console.log(playRound("rock", getComputerChoice()))
+// });
+
+
+// delete line below to go back to full game logic
+//console.log(playRound(prompt("Choose your item: ").toLowerCase(), getComputerChoice()));
