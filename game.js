@@ -3,20 +3,14 @@ let scoreComputer = 0;
 let scorePlayer = 0;
 
 const score = document.querySelector("#score");
-//score.textContent = `Your score: ${scorePlayer} | Computer's score: ${scoreComputer}`;
-
 const result = document.querySelector("#result");
+const buttons = document.querySelectorAll("button");
 
-const rock = document.querySelector("#rock");
-const papper = document.querySelector("#papper");
-const scissors = document.querySelector("#scissors");
-buttons = [rock, papper, scissors];
-
-for (let i = 0; i < buttons.length; i++) {
-    buttons[i].addEventListener("click", function() {
-        playRound(buttons[i].getAttribute('id'), getComputerChoice())
-    });
-}
+buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+        playRound(button.getAttribute('id'), getComputerChoice())
+    })
+})
 
 
 function getComputerChoice() {
@@ -38,26 +32,28 @@ function playRound(playerSelection, computerSelection) {
         scoreComputer++;
         result.textContent = `You Lose! ${computerSelection} beats ${playerSelection}!`;
     }
+
+    score.textContent = `Your score: ${scorePlayer} | Computer's score: ${scoreComputer}`;
+
+    checkIfGameDone();
     
 }
 
-// function game() {
-//     for (let i = 0; i < 5; i++) {
-//         console.log(playRound(prompt("Choose your item: ").toLowerCase(), getComputerChoice()));
-//     }
-//     if (scoreComputer > scorePlayer) {
-//         console.log(`You lost with a score of ${scorePlayer} to ${scoreComputer}.`);
-//     }
-//     else if (scoreComputer < scorePlayer) {
-//         console.log(`You won with a score of ${scorePlayer} to ${scoreComputer}.`);
-//     }
-//     else {
-//         console.log(`It is a tie! Both with a score of ${scorePlayer}.`);
-//     }
-    
-// }
+function checkIfGameDone () {
+    if (scoreComputer === 5 || scorePlayer === 5) {
+        if (scoreComputer === 5) {
+            alert("Game Done! Computer Won!")
+        }
+        else {
+            alert("Game Done! You Won!")
+        }
+        scoreComputer = 0;
+        scorePlayer = 0;
+        result.textContent = "";
+        
+    }
 
-// game();
+}
 
 
 
