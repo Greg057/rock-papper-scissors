@@ -2,6 +2,23 @@ const items = ["rock", "papper", "scissors"];
 let scoreComputer = 0;
 let scorePlayer = 0;
 
+const score = document.querySelector("#score");
+//score.textContent = `Your score: ${scorePlayer} | Computer's score: ${scoreComputer}`;
+
+const result = document.querySelector("#result");
+
+const rock = document.querySelector("#rock");
+const papper = document.querySelector("#papper");
+const scissors = document.querySelector("#scissors");
+buttons = [rock, papper, scissors];
+
+for (let i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener("click", function() {
+        playRound(buttons[i].getAttribute('id'), getComputerChoice())
+    });
+}
+
+
 function getComputerChoice() {
     item = items[Math.floor(Math.random()*items.length)];
     return item;
@@ -9,19 +26,19 @@ function getComputerChoice() {
 
 function playRound(playerSelection, computerSelection) {
     if (computerSelection === playerSelection) {
-        return "Tie!"
+        result.textContent = "Tie!";
     } 
     else if ((playerSelection === "rock" && computerSelection === "scissors") 
     || (playerSelection === "papper" && computerSelection === "rock") 
     || (playerSelection === "scissors" && computerSelection === "papper")) {
         scorePlayer++;
-        return `You win! ${playerSelection} beats ${computerSelection}!`;
+        result.textContent = `You win! ${playerSelection} beats ${computerSelection}!`;
     } 
     else {
         scoreComputer++;
-        return `You Lose! ${computerSelection} beats ${playerSelection}!`;
+        result.textContent = `You Lose! ${computerSelection} beats ${playerSelection}!`;
     }
-
+    
 }
 
 // function game() {
@@ -42,22 +59,7 @@ function playRound(playerSelection, computerSelection) {
 
 // game();
 
-const rock = document.getElementById("rock");
-const papper = document.getElementById("papper");
-const scissors = document.getElementById("scissors");
-buttons = [rock, papper, scissors];
-
-for (let i = 0; i < buttons.length; i++) {
-    buttons[i].addEventListener("click", function() {
-        console.log(playRound(buttons[i].getAttribute('id'), getComputerChoice()))
-    });
-}
 
 
-// rock.addEventListener("click", function() {
-//     console.log(playRound("rock", getComputerChoice()))
-// });
 
 
-// delete line below to go back to full game logic
-//console.log(playRound(prompt("Choose your item: ").toLowerCase(), getComputerChoice()));
